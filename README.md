@@ -60,3 +60,7 @@ Explanation: I wrote tests for the validation logic in validation.ts to ensure t
 Fix: Implemented localStorage to persist timers across page refreshes.
 
 Explanation: I used localStorage to store timers so that their state persists even after a page refresh. This ensures that the timers remain intact and functional, providing a seamless user experience across sessions.
+
+# Performance
+
+<img src="./src/assets/performance-report.png">
