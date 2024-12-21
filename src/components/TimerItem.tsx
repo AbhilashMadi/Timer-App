@@ -21,6 +21,8 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const intervalRef = useRef<number | null>(null);
+  const audioTimerRef = useRef<number | null>(null);
+
   const timerAudio = TimerAudio.getInstance();
   const hasEndedRef = useRef(false);
 
@@ -31,25 +33,36 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
 
         if (timer.remainingTime <= 1 && !hasEndedRef.current) {
           hasEndedRef.current = true;
-          timerAudio.play().catch(console.error);
 
+          // Start the audio loop (call play repeatedly)
+          audioTimerRef.current = window.setInterval(() => {
+            timerAudio.play().catch(console.error);
+          }, 1_000);
+
+          // Display snack bar when the timer ends
           toast.success(`Timer "${timer.title}" has ended!`, {
-            duration: 5000,
+            duration: Infinity,
             action: {
               label: "Dismiss",
-              onClick: timerAudio.stop,
+              onClick: () => {
+                timerAudio.stop();
+                clearInterval(audioTimerRef.current!);
+              },
             },
           });
         }
-      }, 1000);
+      }, 1_000);
     }
 
-    return () => clearInterval(intervalRef.current!);
-  }, [timer.id, timer.isRunning, timer.remainingTime, timer.title, timerAudio]);
+    // Clean up interval when timer is no longer running
+    return () => {
+      clearInterval(intervalRef.current!);
+    };
+  }, [timer, timerAudio]);
 
   const handleEditModal = (): void => {
     setIsEditModalOpen(!isEditModalOpen);
-  }
+  };
 
   const handleRestart = () => {
     hasEndedRef.current = false;
@@ -113,7 +126,8 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
               duration={timer.duration}
               onToggle={handleToggle}
               onRestart={handleRestart}
-            /></div>
+            />
+          </div>
         </div>
       </div>
     </>

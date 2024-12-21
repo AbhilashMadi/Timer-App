@@ -210,7 +210,8 @@ const AddTimerForm: FC<AddTimerForm> = (props) => {
         <Button
           variant="primary"
           type="submit"
-          disabled={!isTitleValid || !isTimeValid}>
+        // disabled={!isTitleValid || !isTimeValid}
+        >
           Add Timer
         </Button>
       </div>

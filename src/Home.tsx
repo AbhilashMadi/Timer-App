@@ -15,7 +15,9 @@ function Home() {
   }
 
   return (<main className="min-h-dvh bg-gradient-to-br from-gray-50 to-gray-100">
-    <Toaster position="top-right" />
+    <Toaster position={window.matchMedia("(max-width: 768px)").matches
+      ? "bottom-center"
+      : "top-right"} />
     <div className="container mx-auto p-8">
       <Header onAddTimeClick={toggleAddTimerModel} />
       <TimerList />
