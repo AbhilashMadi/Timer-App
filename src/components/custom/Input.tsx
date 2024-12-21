@@ -30,7 +30,7 @@ const Input: FC<InputProps> = ({
         id={uId}
         {...restProps}
         className={tw(
-          "bg-gray-50 border text-gray-900 text-sm rounded focus:shadow focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+          "bg-gray-50 border focus:outline-blue-500 text-gray-900 text-sm rounded focus:shadow focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
           !isValid && touched && "border-red-500",
           className
         )}

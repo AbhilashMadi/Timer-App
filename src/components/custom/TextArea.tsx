@@ -29,7 +29,7 @@ const TextArea: FC<TextAreaProps> = ({
         id={uId}
         {...restProps}
         className={tw(
-          "block w-full focus:shadow p-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500",
+          "block w-full focus:outline-blue-500 focus:shadow p-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500",
           !isValid && touched && "border-red-500",
           className
         )}
