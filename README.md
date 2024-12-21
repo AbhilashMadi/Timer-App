@@ -53,10 +53,15 @@ Explanation: On desktop devices, snack bars are displayed in the top-right corne
 
 Fix: Added unit tests for the validation logic and component tests for reusable components.
 
-Explanation: I wrote tests for the validation logic in validation.ts to ensure that all validation rules are working as expected. Additionally, I wrote tests for the TimerItem and ModalButtons components to ensure they render and function correctly.
+Explanation: Written test cases for `utils` functions
 
 ## 10. Timer Persistence:
 
 Fix: Implemented localStorage to persist timers across page refreshes.
 
 Explanation: I used localStorage to store timers so that their state persists even after a page refresh. This ensures that the timers remain intact and functional, providing a seamless user experience across sessions.
+
+# Performance Report
+
+<img src="./src/assets/performance-report.png">
+
