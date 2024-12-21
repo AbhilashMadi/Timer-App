@@ -16,7 +16,7 @@ function Home() {
 
   return (<main className="min-h-dvh bg-gradient-to-br from-gray-50 to-gray-100">
     <Toaster position="top-right" />
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto p-8">
       <Header onAddTimeClick={toggleAddTimerModel} />
       <TimerList />
       <Modal

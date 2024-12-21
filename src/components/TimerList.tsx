@@ -1,9 +1,13 @@
 import { type FC } from "react";
-import { TimerItem } from "./TimerItem";
-import { useTimerStore } from "../store/useTimerStore";
-import { EmptyState } from "./EmptyState";
 
-export const EmptyTimers: FC = () => {
+import { Timer } from "@/types/timer";
+import Mapper from "@/components/custom/Mapper";
+
+import { EmptyState } from "./EmptyState";
+import { TimerItem } from "./TimerItem";
+import { useTimerStore } from "@/hooks/useTimerStore";
+
+const EmptyTimers: FC = () => {
   return (
     <div className="h-full min-h-[calc(100vh-10rem)] flex items-center justify-center">
       <div className="flex flex-col items-center text-center">
@@ -25,11 +29,11 @@ export const TimerList: FC = () => {
     <section className="space-y-4">
       {timers.length === 0
         ? <EmptyTimers />
-        : (<div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {timers.map((timer) => (
-            <TimerItem key={timer.id} timer={timer} />
-          ))}
-        </div>)}
+        : <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6">
+          <Mapper<Timer>
+            data={timers}
+            comp={(data) => <TimerItem key={data.id} timer={data} />} />
+        </div>}
     </section>
   );
 };

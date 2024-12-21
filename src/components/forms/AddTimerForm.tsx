@@ -3,25 +3,30 @@ import Input from "@/components/custom/Input";
 import Label from "@/components/custom/Label";
 import TextArea from "@/components/custom/TextArea";
 
-import { type FC, type FormEvent, useState } from "react";
 import { type AddTimerFormSchema, FormKeys } from "@/types/form.types";
+import { type FC, type FormEvent, useState } from "react";
 
-import { addTimer } from "@/store/useTimerStore";
+import { useTimerStore } from "@/hooks/useTimerStore";
 import { validateTimerForm } from "@/utils/validation";
+import { Timer } from "@/types/timer";
+import { convertSeconds } from "@/utils/time";
 
 type AddTimerForm = {
   onClose: () => void;
+  editTimerObj?: Timer;
 }
 
 const AddTimerForm: FC<AddTimerForm> = (props) => {
-  const { onClose } = props;
+  const { onClose, editTimerObj } = props;
+  const { addTimer, editTimer } = useTimerStore();
 
+  const editDurations = convertSeconds(editTimerObj?.duration ?? 0);
   const intialFormState: Readonly<AddTimerFormSchema> = {
-    [FormKeys.TITLE]: "",
-    [FormKeys.DESCRIPTION]: "",
-    [FormKeys.HOURS]: 0,
-    [FormKeys.MINUTES]: 0,
-    [FormKeys.SECONDS]: 0,
+    [FormKeys.TITLE]: editTimerObj?.[FormKeys.TITLE] || "",
+    [FormKeys.DESCRIPTION]: editTimerObj?.[FormKeys.DESCRIPTION] || "",
+    [FormKeys.HOURS]: editDurations.hours,
+    [FormKeys.MINUTES]: editDurations.minutes,
+    [FormKeys.SECONDS]: editDurations.seconds,
   };
 
   // Initial touched state to track which fields were interacted with
@@ -68,13 +73,20 @@ const AddTimerForm: FC<AddTimerForm> = (props) => {
       (formState[FormKeys.SECONDS] || 0);
 
     // Call the addTimer function from the store to add the new timer
-    addTimer({
+    const editTimerObjId = editTimerObj?.id;
+    const timer = {
       title: formState[FormKeys.TITLE].trim(),
       description: formState[FormKeys.DESCRIPTION].trim(),
       duration: totalSeconds,
       remainingTime: totalSeconds,
       isRunning: false,
-    });
+    };
+
+    if (editTimerObjId) {
+      editTimer(editTimerObjId, timer);
+    } else {
+      addTimer(timer);
+    }
 
     // Reset the form state after successful submission
     setFormState(intialFormState);
@@ -107,6 +119,7 @@ const AddTimerForm: FC<AddTimerForm> = (props) => {
             errorMessage={"Title is required and must be less than 50 characters"}
             required
             isValid={isTitleValid}
+            autoFocus
           />
           {/* Display character count and validation message */}
           {(isTitleValid || !touchedState[FormKeys.TITLE]) &&

@@ -1,6 +1,6 @@
-import { useKeyObserver } from "@/hooks/useKeyObserver";
+import useKeyPress from "@/hooks/useKeyPress";
 import { X } from "lucide-react";
-import { useEffect, type FC, type ReactNode } from "react";
+import { type FC, type ReactNode } from "react";
 import ReactDOM from "react-dom";
 
 // Modal Component
@@ -13,16 +13,10 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = (props) => {
   const { isOpen, onClose, children, title, } = props;
-  const { registerKey, unregisterKey } = useKeyObserver();
 
-  useEffect(() => {
-    //register the escape key to close the modal
-    registerKey("Escape", onClose);
-    //cleanup
-    return () => { unregisterKey("Escape") }
-  }, [onClose, registerKey, unregisterKey]);
+  useKeyPress("Escape", onClose, isOpen);
 
-  if (!isOpen) return null;
+  if (!isOpen) return;
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-3 z-50">
