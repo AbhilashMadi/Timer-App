@@ -1,6 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { Timer } from "../types/timer";
+import { generateId } from "@/utils/generators";
 
 const initialState = {
   timers: [] as Timer[],
@@ -13,7 +14,7 @@ const timerSlice = createSlice({
     addTimer: (state, action) => {
       state.timers.push({
         ...action.payload,
-        id: crypto.randomUUID(),
+        id: generateId(),
         createdAt: Date.now(),
       });
     },

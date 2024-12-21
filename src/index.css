@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --font-primary: "Inter", serif;
+  }
+}
+
 @layer utilities {
   .flex_center {
     @apply flex justify-center items-center;
