@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "vitest --run && rm -rf dist",
     "build": "vite build",
     "lint": "eslint .",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage"

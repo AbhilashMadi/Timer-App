@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function useKeyPress(key: string, callback: () => void, isActive: boolean) {
+const useKeyPress = (key: string, callback: () => void, isActive: boolean) => {
   useEffect(() => {
     if (!isActive) return;
 

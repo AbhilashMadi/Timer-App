@@ -1,5 +1,5 @@
 import { describe, it, beforeEach, afterEach, expect, vi } from "vitest";
-import { TimerAudio } from "./audio";
+import { TimerAudio } from "../src/utils/audio";
 
 describe("TimerAudio", () => {
   let timerAudio: TimerAudio;
@@ -65,7 +65,7 @@ describe("TimerAudio", () => {
       throw new Error("AudioContext error");
     });
 
-    const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => { });
 
     await timerAudio.play();
 
