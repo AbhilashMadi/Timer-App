@@ -20,7 +20,7 @@ const Modal: FC<ModalProps> = (props) => {
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-3 z-50">
-      <div className="bg-white p-5 rounded w-full max-w-md shadow-xl relative">
+      <div className="bg-white p-5 rounded-lg w-full max-w-md shadow-xl relative">
         <div className="flex justify-between items-center">
           <h4 className="text-lg font-medium">{title}</h4>
           <button onClick={onClose} className="hover:bg-gray-200 transition-colors p-1 rounded-full"><X size={20} /></button>

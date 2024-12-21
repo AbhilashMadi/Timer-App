@@ -85,51 +85,48 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
     <>
       {/* Edit Timer Modal */}
       <Modal
-        title={<><TimerIcon className="text-blue-500 inline" /> Edit Form</>}
+        title={<><TimerIcon className="text-blue-500 inline" />{" "}Edit Form</>}
         children={<AddTimerForm onClose={handleEditModal} editTimerObj={timer} />}
         isOpen={isEditModalOpen}
         onClose={handleEditModal}
       />
 
       {/* Timer Item */}
-      <div className="bg-white p-6 rounded-md shadow-md">
-        <div>
-          <div className="flex justify-between mb-4">
-            <div className="w-5/6">
-              <h3 className="text-xl font-semibold text-gray-800">{timer.title}</h3>
-              <p className="text-gray-600 mt-1 text-sm">{timer.description}</p>
-            </div>
-            <div>
-              <ActionButtons
-                editButtonProps={{ onClick: handleEditModal }}
-                resetButtonProps={{ onClick: handleRestart }}
-                deleteButtonProps={{ onClick: handleDelete }}>
-                <ActionButtons.Edit />
-                <ActionButtons.Reset />
-                <ActionButtons.Delete />
-              </ActionButtons>
-            </div>
-          </div>
-
-          <time className="text-4xl font-mono flex_center font-bold text-gray-800 mb-4">
-            {formatTime(timer.remainingTime)}
-          </time>
-
-          <TimerProgress
-            progress={(timer.remainingTime / timer.duration) * 100}
-          />
-
-          <div className="flex justify-center">
-            <TimerControls
-              isRunning={timer.isRunning}
-              remainingTime={timer.remainingTime}
-              duration={timer.duration}
-              onToggle={handleToggle}
-              onRestart={handleRestart}
-            />
+      <div className="bg-white p-6 rounded-lg shadow-md md:p-4">
+        <div className="flex justify-between gap-4">
+          <h3 className="text-xl font-semibold text-gray-800 md:text-lg">{timer.title}</h3>
+          <div>
+            <ActionButtons
+              editButtonProps={{ onClick: handleEditModal }}
+              resetButtonProps={{ onClick: handleRestart }}
+              deleteButtonProps={{ onClick: handleDelete }}>
+              <ActionButtons.Edit />
+              <ActionButtons.Reset />
+              <ActionButtons.Delete />
+            </ActionButtons>
           </div>
         </div>
-      </div>
+
+        <p className="text-gray-600 mb-4 mt-2 text-sm md:text-xs">{timer.description}</p>
+
+        <time className="text-4xl font-mono flex_center font-bold text-gray-800 mb-4 md:text-3xl">
+          {formatTime(timer.remainingTime)}
+        </time>
+
+        <TimerProgress
+          progress={(timer.remainingTime / timer.duration) * 100}
+        />
+
+        <div className="flex justify-center">
+          <TimerControls
+            isRunning={timer.isRunning}
+            remainingTime={timer.remainingTime}
+            duration={timer.duration}
+            onToggle={handleToggle}
+            onRestart={handleRestart}
+          />
+        </div>
+      </div >
     </>
   );
 };
