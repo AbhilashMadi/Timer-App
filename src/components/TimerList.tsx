@@ -32,7 +32,7 @@ export const TimerList: FC = () => {
         : <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6">
           <Mapper<Timer>
             data={timers}
-            comp={(data) => <TimerItem key={data.id} timer={data} />} />
+            comp={(data) => <TimerItem timer={data} />} />
         </div>}
     </section>
   );

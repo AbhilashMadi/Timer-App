@@ -1,15 +1,16 @@
-import { useTimerStore } from "@/hooks/useTimerStore";
-import { Timer as TimerIcon } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import { useTimerStore } from "@/hooks/useTimerStore";
+import React, { useEffect, useRef, useState } from "react";
 import { TimerAudio } from "../utils/audio";
 import { formatTime } from "../utils/time";
 import { TimerControls } from "./TimerControls";
 import { TimerProgress } from "./TimerProgress";
+import { Timer } from "@/types/timer";
+import { Timer as TimerIcon } from "lucide-react";
+
 import ActionButtons from "./custom/ActionButtons";
 import Modal from "./custom/Modal";
 import AddTimerForm from "./forms/AddTimerForm";
-import { Timer } from "@/types/timer";
 
 interface TimerItemProps {
   timer: Timer;
@@ -21,7 +22,6 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
 
   const intervalRef = useRef<number | null>(null);
   const timerAudio = TimerAudio.getInstance();
-
   const hasEndedRef = useRef(false);
 
   useEffect(() => {
@@ -45,7 +45,11 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
     }
 
     return () => clearInterval(intervalRef.current!);
-  }, [timer.isRunning, timer.id, timer.remainingTime, timer.title, timerAudio, updateTimer]);
+  }, [timer.id, timer.isRunning, timer.remainingTime, timer.title, timerAudio]);
+
+  const handleEditModal = (): void => {
+    setIsEditModalOpen(!isEditModalOpen);
+  }
 
   const handleRestart = () => {
     hasEndedRef.current = false;
@@ -69,11 +73,9 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
       {/* Edit Timer Modal */}
       <Modal
         title={<><TimerIcon className="text-blue-500 inline" /> Edit Form</>}
-        children={<AddTimerForm
-          onClose={() => setIsEditModalOpen(false)}
-          editTimerObj={timer} />}
+        children={<AddTimerForm onClose={handleEditModal} editTimerObj={timer} />}
         isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
+        onClose={handleEditModal}
       />
 
       {/* Timer Item */}
@@ -86,7 +88,7 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
             </div>
             <div>
               <ActionButtons
-                editButtonProps={{ onClick: () => setIsEditModalOpen(true) }}
+                editButtonProps={{ onClick: handleEditModal }}
                 resetButtonProps={{ onClick: handleRestart }}
                 deleteButtonProps={{ onClick: handleDelete }}>
                 <ActionButtons.Edit />

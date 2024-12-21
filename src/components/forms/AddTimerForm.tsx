@@ -72,8 +72,7 @@ const AddTimerForm: FC<AddTimerForm> = (props) => {
       (formState[FormKeys.MINUTES] || 0) * 60 +
       (formState[FormKeys.SECONDS] || 0);
 
-    // Call the addTimer function from the store to add the new timer
-    const editTimerObjId = editTimerObj?.id;
+    // Create the timer object
     const timer = {
       title: formState[FormKeys.TITLE].trim(),
       description: formState[FormKeys.DESCRIPTION].trim(),
@@ -82,9 +81,13 @@ const AddTimerForm: FC<AddTimerForm> = (props) => {
       isRunning: false,
     };
 
+    const editTimerObjId = editTimerObj?.id;
+
     if (editTimerObjId) {
+      // If we're editing an existing timer, call editTimer
       editTimer(editTimerObjId, timer);
     } else {
+      // If it's a new timer, call addTimer
       addTimer(timer);
     }
 
