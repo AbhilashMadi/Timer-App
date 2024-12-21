@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Trash2, RotateCcw, Pencil } from 'lucide-react';
-import { Timer } from '../types/timer';
-import { formatTime } from '../utils/time';
-import { useTimerStore } from '../store/useTimerStore';
-import { toast } from 'sonner';
-import { EditTimerModal } from './EditTimerModal';
-import { TimerAudio } from '../utils/audio';
-import { TimerControls } from './TimerControls';
-import { TimerProgress } from './TimerProgress';
+import React, { useEffect, useRef, useState } from "react";
+import { Trash2, RotateCcw, Pencil } from "lucide-react";
+import { Timer } from "../types/timer";
+import { formatTime } from "../utils/time";
+import { useTimerStore } from "../store/useTimerStore";
+import { toast } from "sonner";
+import { EditTimerModal } from "./EditTimerModal";
+import { TimerAudio } from "../utils/audio";
+import { TimerControls } from "./TimerControls";
+import { TimerProgress } from "./TimerProgress";
 
 interface TimerItemProps {
   timer: Timer;
@@ -32,7 +32,7 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
           toast.success(`Timer "${timer.title}" has ended!`, {
             duration: 5000,
             action: {
-              label: 'Dismiss',
+              label: "Dismiss",
               onClick: timerAudio.stop,
             },
           });
