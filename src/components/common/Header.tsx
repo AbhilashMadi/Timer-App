@@ -15,7 +15,7 @@ const Header: FC<HeaderProps> = (props) => {
       <h1 className="text-3xl font-bold text-gray-900">Timer</h1>
     </div>
     <Button onClick={onAddTimeClick}>
-      <Plus className="w-5 h-5" />
+      <Plus className="w-5 h-5 inline mr-1" />
       Add Timer
     </Button>
   </header>)

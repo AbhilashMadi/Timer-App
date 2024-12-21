@@ -1,7 +1,7 @@
 import { FC, ButtonHTMLAttributes } from "react";
 import { tw } from "@/utils/lib";
 
-type ButtonVariants = "primary" | "ghost";
+type ButtonVariants = "primary" | "ghost" | "icon";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -15,6 +15,7 @@ const Button: FC<ButtonProps> = ({ children, className, variant = "primary", ...
   const variants: Record<ButtonVariants, string> = {
     primary: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300",
     ghost: "text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-gray-100",
+    icon: "p-2 rounded-full hover:bg-blue-50 text-blue-500 transition-colors",
   };
 
   return (
