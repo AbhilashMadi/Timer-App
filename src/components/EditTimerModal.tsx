@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { X, Clock } from 'lucide-react';
-import { useTimerStore } from '../store/useTimerStore';
-import { validateTimerForm } from '../utils/validation';
-import { Timer } from '../types/timer';
+import React, { useState, useEffect } from "react";
+import { X, Clock } from "lucide-react";
+import { useTimerStore } from "../store/useTimerStore";
+import { validateTimerForm } from "../utils/validation";
+import { Timer } from "../types/timer";
 
 interface EditTimerModalProps {
   isOpen: boolean;
@@ -107,8 +107,8 @@ export const EditTimerModal: React.FC<EditTimerModalProps> = ({
               maxLength={50}
               className={`w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                 touched.title && !isTitleValid
-                  ? 'border-red-500'
-                  : 'border-gray-300'
+                  ? "border-red-500"
+                  : "border-gray-300"
               }`}
               placeholder="Enter timer title"
             />
@@ -196,8 +196,8 @@ export const EditTimerModal: React.FC<EditTimerModalProps> = ({
               type="submit"
               className={`px-4 py-2 text-sm font-medium text-white rounded-md transition-colors ${
                 isTitleValid && isTimeValid
-                  ? 'bg-blue-600 hover:bg-blue-700'
-                  : 'bg-blue-400 cursor-not-allowed'
+                  ? "bg-blue-600 hover:bg-blue-700"
+                  : "bg-blue-400 cursor-not-allowed"
               }`}
               disabled={!isTitleValid || !isTimeValid}
             >

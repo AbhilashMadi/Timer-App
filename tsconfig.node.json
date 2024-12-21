@@ -18,13 +18,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "incremental": true,
-    /* Path alias */
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
+    "incremental": true
   },
   "include": [
     "vite.config.ts"

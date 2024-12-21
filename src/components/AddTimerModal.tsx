@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { X, Clock } from 'lucide-react';
-import { useTimerStore } from '../store/useTimerStore';
-import { validateTimerForm } from '../utils/validation';
+import React, { useState } from "react";
+import { X, Clock } from "lucide-react";
+import { useTimerStore } from "../store/useTimerStore";
+import { validateTimerForm } from "../utils/validation";
 
 interface AddTimerModalProps {
   isOpen: boolean;
@@ -9,8 +9,8 @@ interface AddTimerModalProps {
 }
 
 export const AddTimerModal: React.FC<AddTimerModalProps> = ({ isOpen, onClose }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -43,8 +43,8 @@ export const AddTimerModal: React.FC<AddTimerModalProps> = ({ isOpen, onClose })
     });
 
     onClose();
-    setTitle('');
-    setDescription('');
+    setTitle("");
+    setDescription("");
     setHours(0);
     setMinutes(0);
     setSeconds(0);
@@ -98,8 +98,8 @@ export const AddTimerModal: React.FC<AddTimerModalProps> = ({ isOpen, onClose })
               maxLength={50}
               className={` ${
                 touched.title && !isTitleValid
-                  ? 'border-red-500'
-                  : 'border-gray-300'
+                  ? "border-red-500"
+                  : "border-gray-300"
               }`}
               placeholder="Enter timer title"
             />
@@ -187,8 +187,8 @@ export const AddTimerModal: React.FC<AddTimerModalProps> = ({ isOpen, onClose })
               type="submit"
               className={`px-4 py-2 text-sm font-medium text-white rounded-md transition-colors ${
                 isTitleValid && isTimeValid
-                  ? 'bg-blue-600 hover:bg-blue-700'
-                  : 'bg-blue-400 cursor-not-allowed'
+                  ? "bg-blue-600 hover:bg-blue-700"
+                  : "bg-blue-400 cursor-not-allowed"
               }`}
               disabled={!isTitleValid || !isTimeValid}
             >
