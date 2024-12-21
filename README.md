@@ -53,7 +53,7 @@ Explanation: On desktop devices, snack bars are displayed in the top-right corne
 
 Fix: Added unit tests for the validation logic and component tests for reusable components.
 
-Explanation: I wrote tests for the validation logic in validation.ts to ensure that all validation rules are working as expected. Additionally, I wrote tests for the TimerItem and ModalButtons components to ensure they render and function correctly.
+Explanation: Written test cases for `utils` functions
 
 ## 10. Timer Persistence:
 
