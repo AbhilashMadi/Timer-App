@@ -18,7 +18,7 @@ function Home() {
     <Toaster position={window.matchMedia("(max-width: 768px)").matches
       ? "bottom-center"
       : "top-right"} />
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto p-4">
       <Header onAddTimeClick={toggleAddTimerModel} />
       <TimerList />
       <Modal
