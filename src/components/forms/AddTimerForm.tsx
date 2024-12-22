@@ -11,12 +11,12 @@ import { validateTimerForm } from "@/utils/validation";
 import { Timer } from "@/types/timer";
 import { convertSeconds } from "@/utils/time";
 
-type AddTimerForm = {
+export type AddTimerFormProps = {
   onClose: () => void;
   editTimerObj?: Timer;
 }
 
-const AddTimerForm: FC<AddTimerForm> = (props) => {
+const AddTimerForm: FC<AddTimerFormProps> = (props) => {
   const { onClose, editTimerObj } = props;
   const { addTimer, editTimer } = useTimerStore();
 

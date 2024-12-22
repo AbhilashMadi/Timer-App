@@ -4,7 +4,7 @@ import { type FC, type ReactNode } from "react";
 import ReactDOM from "react-dom";
 
 // Modal Component
-interface ModalProps {
+export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;

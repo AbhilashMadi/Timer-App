@@ -7,7 +7,7 @@ import { useTimerStore } from "@/hooks/useTimerStore";
 import { TimerItem } from "./TimerItem";
 import { EmptyState } from "./EmptyState";
 
-export const TimerList: FC = () => {
+const TimerList: FC = () => {
   const { timers } = useTimerStore();
 
   return (
@@ -22,3 +22,5 @@ export const TimerList: FC = () => {
     </section>
   );
 };
+
+export default TimerList;

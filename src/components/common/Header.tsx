@@ -2,7 +2,7 @@ import { Clock, Plus } from "lucide-react";
 import { type FC } from "react";
 import Button from "@/components/custom/Button";
 
-type HeaderProps = {
+export type HeaderProps = {
   onAddTimeClick: () => void;
 }
 
