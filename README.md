@@ -64,3 +64,4 @@ Explanation: I used localStorage to store timers so that their state persists ev
 # Performance Report
 
 <img src="./src/assets/performance-report.png">
+
