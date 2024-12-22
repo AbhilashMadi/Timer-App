@@ -89,32 +89,58 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
         children={<AddTimerForm onClose={handleEditModal} editTimerObj={timer} />}
         isOpen={isEditModalOpen}
         onClose={handleEditModal}
+        aria-labelledby="edit-timer-modal-title"
+        aria-hidden={!isEditModalOpen}
       />
 
       {/* Timer Item */}
-      <div className="bg-white p-6 rounded-lg shadow-md md:p-4">
-        <div className="flex justify-between gap-4">
-          <h3 className="text-xl font-semibold text-gray-800 md:text-lg">{timer.title}</h3>
+      <section
+        className="bg-white p-6 rounded-lg shadow-md md:p-4"
+        aria-labelledby="timer-title">
+        <header className="flex justify-between gap-4">
+          <h3
+            id="timer-title"
+            className="text-xl font-semibold text-gray-800 md:text-lg"
+            tabIndex={0}
+            aria-live="polite">
+            {timer.title}
+          </h3>
           <div>
             <ActionButtons
-              editButtonProps={{ onClick: handleEditModal }}
-              resetButtonProps={{ onClick: handleRestart }}
-              deleteButtonProps={{ onClick: handleDelete }}>
+              editButtonProps={{
+                onClick: handleEditModal,
+                "aria-label": "Edit timer"
+              }}
+              resetButtonProps={{
+                onClick: handleRestart,
+                "aria-label": "Restart timer"
+              }}
+              deleteButtonProps={{
+                onClick: handleDelete,
+                "aria-label": "Delete timer"
+              }}>
               <ActionButtons.Edit />
               <ActionButtons.Reset />
               <ActionButtons.Delete />
             </ActionButtons>
           </div>
-        </div>
+        </header>
 
-        <p className="text-gray-600 mb-4 mt-2 text-sm md:text-xs">{timer.description}</p>
+        <p className="text-gray-600 mb-4 mt-2 text-sm md:text-xs" aria-describedby="timer-description">
+          {timer.description}
+        </p>
 
-        <time className="text-4xl font-mono flex_center font-bold text-gray-800 mb-4 md:text-3xl">
+        <time
+          id="timer-time"
+          className="text-4xl font-mono flex_center font-bold text-gray-800 mb-4 md:text-3xl"
+          aria-live="assertive"
+        >
           {formatTime(timer.remainingTime)}
         </time>
 
         <TimerProgress
           progress={(timer.remainingTime / timer.duration) * 100}
+          aria-labelledby="timer-time"
         />
 
         <div className="flex justify-center">
@@ -124,9 +150,10 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
             duration={timer.duration}
             onToggle={handleToggle}
             onRestart={handleRestart}
+            aria-label={timer.isRunning ? "Pause timer" : "Start timer"}
           />
         </div>
-      </div >
+      </section>
     </>
   );
 };
