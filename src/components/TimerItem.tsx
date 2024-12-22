@@ -98,13 +98,13 @@ export const TimerItem: React.FC<TimerItemProps> = ({ timer }) => {
         className="bg-white p-6 rounded-lg shadow-md md:p-4"
         aria-labelledby="timer-title">
         <header className="flex justify-between gap-4">
-          <h3
+          <h2
             id="timer-title"
             className="text-xl font-semibold text-gray-800 md:text-lg"
             tabIndex={0}
             aria-live="polite">
             {timer.title}
-          </h3>
+          </h2>
           <div>
             <ActionButtons
               editButtonProps={{
